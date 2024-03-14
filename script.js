@@ -21,5 +21,23 @@ const changeImage = () => {
 		index = carouselImages.lenght - 1;
 	}
 
-	sliderBox.style.transform = `translateX(${- index * carouselWidth}px)`;
+	sliderBox.style.transform = `translateX(${-index * carouselWidth}px)`;
 };
+
+const handleRightArrow = () => {
+	index++;
+	resetInterval();
+};
+const handleLeftArrow = () => {
+	index--;
+	resetInterval();
+};
+
+const resetInterval = () => {
+	changeImage();
+	clearInterval(startCarousel);
+	let startCarousel = setInterval(handleCarousel, carouselSpeed);
+};
+
+rightBtn.addEventListener('click', handleRightArrow);
+leftBtn.addEventListener('click', handleLeftArrow);
